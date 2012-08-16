@@ -23,25 +23,10 @@
 	</modules>
 
 	<scm>
-		<connection>scm:git:git@github.com:bekkopen/Continuous-Delivery-example.git</connection>
-		<developerConnection>scm:git:git@github.com:bekkopen/Continuous-Delivery-example.git</developerConnection>
-		<url>scm:git:git@github.com:bekkopen/Continuous-Delivery-example</url>
+		<connection>scm:git:git@github.com:gurkamal/Continuous-Delivery-example.git</connection>
+		<developerConnection>scm:git:git@github.com:gurkamal/Continuous-Delivery-example.git</developerConnection>
+		<url>scm:git:git@github.com:gurkamal/Continuous-Delivery-example</url>
 	</scm>
-
-	<distributionManagement>
-		<site>
-			<id>Continuous-Delivery-example</id>
-			<url>http://bekkopen.github.com/Continuous-Delivery-example/</url>
-		</site>
-		<repository>
-			<id>nexus-releases</id>
-			<url>http://node1.morisbak.net:8081/nexus/content/repositories/releases</url>
-		</repository>
-		<snapshotRepository>
-			<id>nexus-snapshots</id>
-			<url>http://node1.morisbak.net:8081/nexus/content/repositories/snapshots</url>
-		</snapshotRepository>
-	</distributionManagement>
 
 	<repositories>
 		<repository>
@@ -93,7 +78,7 @@
 
 	<ciManagement>
 		<system>jenkins</system>
-		<url>http://node1.morisbak.net:8080</url>
+		<url>http://10.50.101.42:8080</url>
 	</ciManagement>
 
 	<dependencyManagement>
@@ -601,5 +586,15 @@
 			<organization>BEKK</organization>
 			<timezone>+1</timezone>
 		</developer>
+        <developer>
+            <id>gurkamal</id>
+            <name>Gur Kamal Singh badal</name>
+            <email>gurkamal.singh (AT) ishisystems.com</email>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <organization>Ishi</organization>
+            <timezone>+5.5</timezone>
+        </developer>
 	</developers>
 </project>

@@ -43,6 +43,10 @@
 			<id>sonatype-nexus-releases</id>
 			<url>https://oss.sonatype.org/content/repositories/releases</url>
 		</repository>
+        <repository>
+            <id>maven2</id>
+            <url>http://repo1.maven.org/maven2</url>
+        </repository>
 		<repository>
 			<id>sonatype-nexus-snapshots</id>
 			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
@@ -66,6 +70,10 @@
 			<id>sonatype-nexus-public</id>
 			<url>https://oss.sonatype.org/content/groups/public</url>
 		</pluginRepository>
+        <pluginRepository>
+            <id>maven2</id>
+            <url>http://repo1.maven.org/maven2</url>
+        </pluginRepository>
 		<pluginRepository>
 			<id>sonatype-nexus-releases</id>
 			<url>https://oss.sonatype.org/content/repositories/releases</url>
@@ -80,6 +88,17 @@
 		<system>jenkins</system>
 		<url>http://10.50.101.42:8080</url>
 	</ciManagement>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>emma-maven-plugin</artifactId>
+                <version>1.0-alpha-3</version>
+                <inherited>true</inherited>
+            </plugin>
+        </plugins>
+    </reporting>
 
 	<dependencyManagement>
 		<dependencies>

@@ -5,7 +5,7 @@
 	<version>0.9-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Bekk Open: Parent POM</name>
-	<url>https://github.com/bekkopen/Continuous-Delivery-example</url>
+	<url>https://github.com/gurkamal/Continuous-Delivery-example</url>
 	<description>Example Java webapp infrastructure for Continuous Delivery.</description>
 
 	<licenses>
@@ -789,10 +789,6 @@
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-            <modules>
-                <module>core</module>
-                <module>webapp</module>
-            </modules>
             <properties>
                 <sonar.jdbc.url>jdbc:mysql://10.50.101.42:3306/sonar?useUnicode=true&amp;characterEncoding=utf8&amp;rewriteBatchedStatements=true</sonar.jdbc.url>
                 <sonar.jdbc.driver>com.mysql.jdbc.Driver</sonar.jdbc.driver>

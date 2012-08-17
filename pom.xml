@@ -245,6 +245,78 @@
 				<version>${version.hsqldb}</version>
 			</dependency>
 
+            <!-- Cucumber -->
+            <dependency>
+                <groupId>info.cukes</groupId>
+                <artifactId>cucumber-core</artifactId>
+                <version>${cucumber.version}</version>
+				<scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>info.cukes</groupId>
+                <artifactId>cucumber-java</artifactId>
+                <version>${cucumber.version}</version>
+				<scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>info.cukes</groupId>
+                <artifactId>cucumber-junit</artifactId>
+                <version>${cucumber.version}</version>
+				<scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>info.cukes</groupId>
+                <artifactId>cucumber-picocontainer</artifactId>
+                <version>${cucumber.version}</version>
+				<scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>info.cukes</groupId>
+                <artifactId>cucumber-html</artifactId>
+                <version>${cucumber-html.version}</version>
+				<scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>info.cukes</groupId>
+                <artifactId>gherkin</artifactId>
+                <version>${gherkin.version}</version>
+				<scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.codehaus.groovy</groupId>
+                <artifactId>groovy-all</artifactId>
+                <version>${groovy.version}</version>
+				<scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.googlecode.java-diff-utils</groupId>
+                <artifactId>diffutils</artifactId>
+                <version>1.2.1</version>
+				<scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.thoughtworks.xstream</groupId>
+                <artifactId>xstream</artifactId>
+                <version>1.4.2</version>
+				<scope>test</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>xmlpull</groupId>
+                        <artifactId>xmlpull</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>xpp3</groupId>
+                        <artifactId>xpp3_min</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.picocontainer</groupId>
+                <artifactId>picocontainer</artifactId>
+                <version>2.14.1</version>
+				<scope>test</scope>
+            </dependency>
+
 			<!-- Logging -->
 			<dependency>
 				<groupId>org.slf4j</groupId>
@@ -291,6 +363,12 @@
 				<version>${junit.version}</version>
 				<scope>test</scope>
 			</dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-all</artifactId>
+                <version>1.9.0</version>
+                <scope>test</scope>
+            </dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-test</artifactId>
@@ -329,6 +407,37 @@
 		</testResources>
 		<pluginManagement>
 			<plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <version>${maven-antrun-plugin.version}</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.codehaus.groovy</groupId>
+                            <artifactId>groovy-all</artifactId>
+                            <version>${groovy.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>info.cukes</groupId>
+                            <artifactId>gherkin</artifactId>
+                            <version>${gherkin.version}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-shade-plugin</artifactId>
+                    <version>1.5</version>
+                    <configuration>
+                        <shadedArtifactAttached>true</shadedArtifactAttached>
+                        <shadedClassifierName>full</shadedClassifierName>
+                        <transformers>
+                            <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                <mainClass>cucumber.cli.Main</mainClass>
+                            </transformer>
+                        </transformers>
+                    </configuration>
+                </plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
@@ -342,6 +451,21 @@
 						<showWarnings>true</showWarnings>
 					</configuration>
 				</plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>2.4.1</version>
+                    <configuration>
+                        <filesets>
+                            <fileset>
+                                <directory>.</directory>
+                                <includes>
+                                    <include>**/*.ser</include>
+                                </includes>
+                            </fileset>
+                        </filesets>
+                    </configuration>
+                </plugin>
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>exec-maven-plugin</artifactId>
@@ -351,7 +475,25 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
 					<version>${surefire.version}</version>
+                    <configuration>
+                        <argLine>-Duser.language=en</argLine>
+                        <argLine>-Dwebdriver.chrome.driver=/usr/bin/chromedriver</argLine>
+                        <argLine>-Xmx1024m</argLine>
+                        <argLine>-XX:MaxPermSize=256m</argLine>
+                        <useFile>false</useFile>
+                    </configuration>
 				</plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>3.0</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>2.8.1</version>
+                </plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-failsafe-plugin</artifactId>
@@ -378,11 +520,6 @@
 					<configuration>
 						<appendAssemblyId>false</appendAssemblyId>
 					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-antrun-plugin</artifactId>
-					<version>${maven-antrun-plugin.version}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.codehaus.gmaven</groupId>
@@ -469,6 +606,14 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+                <!--<executions>
+                    <execution>
+                        <goals>
+                            <goal>testResources</goal>
+                            <goal>test</goal>
+                        </goals>
+                    </execution>
+                </executions>-->
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -501,7 +646,8 @@
 					<execution>
 						<phase>generate-resources</phase>
 						<goals>
-							<goal>execute</goal>
+                            <!--<goal>testCompile</goal>-->
+   							<goal>execute</goal>
 						</goals>
 						<configuration>
 							<source>
@@ -512,6 +658,11 @@
 					</execution>
 				</executions>
 			</plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.1.1</version>
+            </plugin>
 		</plugins>
 	</build>
 
@@ -537,19 +688,25 @@
 		<junit.version>4.9</junit.version>
 		<tiles.version>2.2.2</tiles.version>
 		<version.hsqldb>2.0.0</version.hsqldb>
+        <gherkin.version>2.11.0</gherkin.version>
+        <groovy.version>2.0.0-rc-3</groovy.version>
+        <cucumber-html.version>0.2.1</cucumber-html.version>
+        <cucumber.version>1.0.11</cucumber.version>
 		<!-- Plugin versions -->
 		<build-helper-maven-plugin.version>1.7</build-helper-maven-plugin.version>
 		<appassembler-plugin.version>1.0-alpha-2</appassembler-plugin.version>
 		<war-plugin.version>2.1.1</war-plugin.version>
 		<compiler-plugin.version>2.3.2</compiler-plugin.version>
 		<exec-maven-plugin.version>1.2</exec-maven-plugin.version>
-		<maven-antrun-plugin.version>1.6</maven-antrun-plugin.version>
+		<maven-antrun-plugin.version>1.7s</maven-antrun-plugin.version>
 		<gmaven-plugin.version>1.3</gmaven-plugin.version>
 		<m2e-lifecycle-mapping.version>1.0.0</m2e-lifecycle-mapping.version>
 		<sql-maven-plugin.version>1.4</sql-maven-plugin.version>
 		<surefire.version>2.10</surefire.version>
 		<release-plugin.version>2.2.1</release-plugin.version>
 		<deploy-plugin.version>2.7</deploy-plugin.version>
+        <selenium.version>2.24.1</selenium.version>
+        <deploy-plugin.version>2.7</deploy-plugin.version>
 		<!-- Extension versions -->
 		<wagon-webdav-jackrabbit.version>1.0</wagon-webdav-jackrabbit.version>
 		<!-- Other properties -->

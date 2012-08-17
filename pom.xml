@@ -413,9 +413,9 @@
 		<pluginManagement>
     		<plugins>
                 <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
+                    <groupId>org.codehaus.sonar</groupId>
                     <artifactId>sonar-maven-plugin</artifactId>
-                    <version>1.0-beta-2</version>
+                    <version>3.1.1</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -669,9 +669,9 @@
 				</executions>
 			</plugin>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
+                <groupId>org.codehaus.sonar</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
-                <version>1.0-beta-2</version>
+                <version>3.1.1</version>
             </plugin>
 		</plugins>
 	</build>

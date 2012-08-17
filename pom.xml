@@ -413,9 +413,9 @@
 		<pluginManagement>
     		<plugins>
                 <plugin>
-                    <groupId>org.codehaus.sonar</groupId>
+                    <groupId>org.codehaus.mojo</groupId>
                     <artifactId>sonar-maven-plugin</artifactId>
-                    <version>3.1.1</version>
+                    <version>2.0-beta-2</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -669,9 +669,9 @@
 				</executions>
 			</plugin>
             <plugin>
-                <groupId>org.codehaus.sonar</groupId>
+                <groupId>org.codehaus.mojo</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
-                <version>3.1.1</version>
+                <version>2.0-beta-2</version>
             </plugin>
 		</plugins>
 	</build>
@@ -783,4 +783,20 @@
             <timezone>+5.5</timezone>
         </developer>
 	</developers>
+    <profiles>
+        <profile>
+            <id>sonar</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <sonar.jdbc.url>jdbc:mysql://10.50.101.42:3306/sonar?useUnicode=true&amp;characterEncoding=utf8&amp;rewriteBatchedStatements=true</sonar.jdbc.url>
+                <sonar.jdbc.driver>com.mysql.jdbc.Driver</sonar.jdbc.driver>
+                <sonar.jdbc.username>sonar</sonar.jdbc.username>
+                <sonar.jdbc.password>sonar</sonar.jdbc.password>
+                <!-- SERVER ON A REMOTE HOST -->
+                <sonar.host.url>http://10.50.101.42:9000</sonar.host.url>
+            </properties>
+        </profile>
+    </profiles>
 </project>

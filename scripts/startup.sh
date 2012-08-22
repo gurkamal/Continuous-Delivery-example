@@ -13,8 +13,8 @@
 #
 
 APP_NAME=webapp
-HOME_DIR=/server/bekkopen
-USER=bekkopen
+HOME_DIR=/opt/exampleAppHome
+USER=jenkins
 
 #
 # DO NOT CHANGE BELOW THIS LINE

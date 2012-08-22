@@ -23,11 +23,11 @@
         <!--<module>acceptanceTests</module>-->
 	</modules>
 
-	<scm>
+	<!--<scm>
 		<connection>scm:git:git@github.com:gurkamal/Continuous-Delivery-example.git</connection>
 		<developerConnection>scm:git:git@github.com:gurkamal/Continuous-Delivery-example.git</developerConnection>
 		<url>scm:git:git@github.com:gurkamal/Continuous-Delivery-example</url>
-	</scm>
+	</scm>-->
 
     <distributionManagement>
         <site>

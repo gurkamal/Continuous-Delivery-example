@@ -20,6 +20,7 @@
 		<module>core</module>
 		<module>database</module>
 		<module>webapp</module>
+        <!--<module>acceptanceTests</module>-->
 	</modules>
 
 	<scm>
@@ -27,6 +28,21 @@
 		<developerConnection>scm:git:git@github.com:gurkamal/Continuous-Delivery-example.git</developerConnection>
 		<url>scm:git:git@github.com:gurkamal/Continuous-Delivery-example</url>
 	</scm>
+
+    <distributionManagement>
+        <site>
+            <id>CDExample</id>
+            <url>http://10.50.101.42:8080/CDExample/</url>
+        </site>
+        <repository>
+            <id>nexus-releases</id>
+            <url>http://10.50.101.42:8080/nexus/content/repositories/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <url>http://10.50.101.42:8080/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 	<repositories>
 		<repository>

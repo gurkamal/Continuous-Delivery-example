@@ -36,11 +36,11 @@
         </site>
         <repository>
             <id>nexus-releases</id>
-            <url>http://10.50.101.42:8080/nexus/content/repositories/releases</url>
+            <url>http://10.50.101.42:8082/nexus/content/repositories/releases</url>
         </repository>
         <snapshotRepository>
             <id>nexus-snapshots</id>
-            <url>http://10.50.101.42:8080/nexus/content/repositories/snapshots</url>
+            <url>http://10.50.101.42:8082/nexus/content/repositories/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
 

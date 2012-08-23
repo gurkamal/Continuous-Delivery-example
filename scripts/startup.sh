@@ -14,7 +14,7 @@
 
 APP_NAME=webapp
 HOME_DIR=/var/lib/jenkins/jobs/CDExample/workspace/scripts
-USER=root
+USER=jenkins
 
 #
 # DO NOT CHANGE BELOW THIS LINE

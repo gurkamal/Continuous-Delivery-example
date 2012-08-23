@@ -13,8 +13,8 @@
 #
 
 APP_NAME=webapp
-HOME_DIR=/opt/exampleAppHome
-USER=jenkins
+HOME_DIR=/var/lib/jenkins/jobs/CDExample/workspace/scripts
+USER=root
 
 #
 # DO NOT CHANGE BELOW THIS LINE
